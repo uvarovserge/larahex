@@ -21,3 +21,5 @@ Take a look at [larahex](larahex) to see full functionality
 Install it with: `composer global require uvarovserge/larahex`
 
 Usage: `larahex your_project_name`. In your current directory a folder with this name will be created, which will contain the project code.
+
+Upgrade to the latest version with: `composer global update`
