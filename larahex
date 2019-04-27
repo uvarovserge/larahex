@@ -23,12 +23,15 @@ CODE
     fi
 }
 
-# Validation
+# Initialization
 [[ $# -eq 0 ]] && err "No arguments supplied"
 [[ -z "$1" ]] && echo "No project name supplied"
-PROJECTNAME="$1"
+LARAHEX_DIR=$(`dirname "$0"`)
+COMMAND="$1"
+[[ "$COMMAND" = "new" ]] || err "Only 'new' command is supported at the moment. Usage: larahex new <your_project_name>"
+PROJECTNAME="$2"
 echo "Project Name: $PROJECTNAME"
-[[ "${PROJECTNAME//[0-9A-Za-z_]/}" = "" ]] || err "Only alphanumeric characters and underscore allowed in a project name"
+[[ "${PROJECTNAME//[0-9A-Za-z_]/}" = "" ]] || err "Only alphanumeric characters and underscores allowed in a project name"
 
 # Create empty laravel app
 composer global update || err "Failed to global-update composer"
@@ -69,8 +72,8 @@ composer require doctrine/dbal || err "Failed to install doctrine/dbal package"
 
 # Helpers
 composer require litipk/php-bignumbers || err "Failed to install litipk/php-bignumbers package"
-wget -O app/helpers.php https://raw.githubusercontent.com/uvarovserge/larahex/master/helpers/helpers.php || err "Could not download helpers.php"
-wget -O app/precision_helpers.php https://raw.githubusercontent.com/uvarovserge/larahex/master/helpers/precision_helpers.php || err "Could not download precision_helpers.php"
+cp $LARAHEX_DIR/../uvarovserge/helpers/helpers.php app/ || err "Could not find helpers.php"
+cp $LARAHEX_DIR/../uvarovserge/helpers/precision_helpers.php app/ || err "Could not download precision_helpers.php"
 replacer '/(\"autoload\"\: {\n)/' '\$1        \"files\": [\"app/helpers.php\", \"app/precision_helpers.php\"],\n' composer.json
 composer dump-autoload || err "Something is wrong with composer"
 
