@@ -69,8 +69,8 @@ composer require doctrine/dbal || err "Failed to install doctrine/dbal package"
 
 # Helpers
 composer require litipk/php-bignumbers || err "Failed to install litipk/php-bignumbers package"
-wget -O app/helpers.php https://raw.githubusercontent.com/uvarovserge/larahex-helpers/master/helpers.php || err "Could not download helpers.php"
-wget -O app/precision_helpers.php https://raw.githubusercontent.com/uvarovserge/larahex-helpers/master/precision_helpers.php || err "Could not download precision_helpers.php"
+wget -O app/helpers.php https://raw.githubusercontent.com/uvarovserge/larahex/master/helpers/helpers.php || err "Could not download helpers.php"
+wget -O app/precision_helpers.php https://raw.githubusercontent.com/uvarovserge/larahex/master/helpers/precision_helpers.php || err "Could not download precision_helpers.php"
 replacer '/(\"autoload\"\: {\n)/' '\$1        \"files\": [\"app/helpers.php\", \"app/precision_helpers.php\"],\n' composer.json
 composer dump-autoload || err "Something is wrong with composer"
 
