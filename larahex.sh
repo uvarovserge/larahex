@@ -74,6 +74,14 @@ wget -O app/precision_helpers.php https://raw.githubusercontent.com/uvarovserge/
 replacer '/(\"autoload\"\: {\n)/' '\$1        \"files\": [\"app/helpers.php\", \"app/precision_helpers.php\"],\n' composer.json
 composer dump-autoload || err "Something is wrong with composer"
 
+# Move models to their own directory
+mkdir app/Models
+mv app/User.php app/Models/User.php
+
+# Add User::this()
+replacer '/(\n\s*?}\s*?\n*?)(?!.*\n\s*?}\s*?\n*?)/' '\n\n    /**\n     * @return User\n     */\n    public static function this()\n    {\n        return Auth::user();\n    }\$1' app/Models/User.php
+replacer '/(\n\nclass User extends)/' '\nuse Illuminate\Support\Facades\Auth;\$1' app/Models/User.php
+
 # Install js packages
 npm install
 
