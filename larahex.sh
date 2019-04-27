@@ -26,9 +26,9 @@ CODE
 # Validation
 [[ $# -eq 0 ]] && err "No arguments supplied"
 [[ -z "$1" ]] && echo "No project name supplied"
-
 PROJECTNAME="$1"
-[[ "${PROJECTNAME//[0-9A-Za-z_]/}" = "" ]] || err "Only alphanumeric characters and underscore allowed in project name"
+echo "Project Name: $PROJECTNAME"
+[[ "${PROJECTNAME//[0-9A-Za-z_]/}" = "" ]] || err "Only alphanumeric characters and underscore allowed in a project name"
 
 # Create empty laravel app
 composer global update || err "Failed to global-update composer"
@@ -53,7 +53,7 @@ replacer "/('functions'\s*?=>\s*?\[\n)/" "\$1            '__', 'app', 'str_repla
 replacer "/('strict_variables'\s*?=>)\s*?.*?,/" "\$1 true," config/twigbridge.php
 replacer "/('autoescape'\s*?=>)\s*?.*?,/" "\$1 true," config/twigbridge.php
 
-# Delete Vue.js scaffolding
+# Delete Vue.js/Lodash scaffolding
 php artisan preset none || err "Failed to set artisan preset none"
 php artisan preset bootstrap || err "Failed to set artisan preset bootstrap"
 
