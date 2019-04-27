@@ -16,4 +16,4 @@ Take a look at [larahex.sh](larahex.sh) to see the full functionality
 
 ## Usage
 
-Usage: `./larahex your_project_name`. In your current directory the folder with this name will be created, which will contain the project code.
+Usage: `./larahex.sh your_project_name`. In your current directory the folder with this name will be created, which will contain the project code.
