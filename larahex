@@ -89,4 +89,6 @@ echo ""
 echo "Your application is ready!"
 echo ""
 
+#todo json settings
+
 # TODO: should we do artisan publish everything?

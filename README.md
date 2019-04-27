@@ -14,8 +14,8 @@ Quickly sets up a new Laravel project with all the things I usually need. Among 
 * Adds `User::this()` as an alias for `Auth::user()`
 * Performs `npm install` at the end
 
-Take a look at [larahex.sh](larahex.sh) to see full functionality
+Take a look at [larahex](larahex) to see full functionality
 
 ## Usage
 
-Usage: `./larahex.sh your_project_name`. In your current directory a folder with this name will be created, which will contain the project code.
+Usage: `./larahex your_project_name`. In your current directory a folder with this name will be created, which will contain the project code.

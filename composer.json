@@ -1,0 +1,19 @@
+{
+    "name": "uvarovserge/larahex",
+    "description": "Quickly sets up a new Laravel project with additional things I usually need",
+    "license": "MIT",
+    "keywords": ["larahex", "laravel", "scaffolding"],
+    "authors": [
+        {
+            "name": "Serge Uvarov",
+            "email": "hi@uvarovconsulting.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.1.3"
+    },
+    "bin": [
+        "larahex"
+    ]
+}

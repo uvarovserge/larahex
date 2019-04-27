@@ -1,0 +1,21 @@
+{
+  "name": "larahex/installer",
+  "description": "Larahex application installer.",
+  "keywords": ["larahex", "laravel", "scaffolding"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Serge Uvarov",
+      "email": "hi@uvarovconsulting.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {}
+  },
+  "require": {
+    "php": "^7.1.3"
+  },
+  "bin": [
+    "larahex"
+  ]
+}
