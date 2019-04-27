@@ -24,7 +24,7 @@ CODE
 }
 
 # Initialization
-[[ $# -eq 0 ]] && err "No arguments supplied"
+[[ $# -lt 1 ]] && err "No arguments supplied"
 [[ -z "$1" ]] && echo "No project name supplied"
 LARAHEX_DIR=$(`dirname "$0"`)
 COMMAND="$1"
