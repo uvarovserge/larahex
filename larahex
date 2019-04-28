@@ -27,6 +27,7 @@ CODE
 [[ $# -lt 1 ]] && err "No arguments supplied"
 [[ -z "$1" ]] && echo "No project name supplied"
 LARAHEX_DIR=$(`dirname "$0"`)
+FILES_DIR="$LARAHEX_DIR/../uvarovserge/files"
 COMMAND="$1"
 [[ "$COMMAND" = "new" ]] || err "Only 'new' command is supported at the moment. Usage: larahex new <your_project_name>"
 PROJECTNAME="$2"
@@ -72,8 +73,8 @@ composer require doctrine/dbal || err "Failed to install doctrine/dbal package"
 
 # Helpers
 composer require litipk/php-bignumbers || err "Failed to install litipk/php-bignumbers package"
-cp $LARAHEX_DIR/../uvarovserge/helpers/helpers.php app/ || err "Could not find helpers.php"
-cp $LARAHEX_DIR/../uvarovserge/helpers/precision_helpers.php app/ || err "Could not download precision_helpers.php"
+cp $FILES_DIR/helpers.php app/ || err "Could not find helpers.php"
+cp $FILES_DIR/precision_helpers.php app/ || err "Could not download precision_helpers.php"
 replacer '/(\"autoload\"\: {\n)/' '\$1        \"files\": [\"app/helpers.php\", \"app/precision_helpers.php\"],\n' composer.json
 composer dump-autoload || err "Something is wrong with composer"
 
@@ -85,13 +86,16 @@ mv app/User.php app/Models/User.php
 replacer '/(\n\s*?}\s*?\n*?)(?!.*\n\s*?}\s*?\n*?)/' '\n\n    /**\n     * @return User\n     */\n    public static function this()\n    {\n        return Auth::user();\n    }\$1' app/Models/User.php
 replacer '/(\n\nclass User extends)/' '\nuse Illuminate\Support\Facades\Auth;\$1' app/Models/User.php
 
+# Add JsonSettingsTrait
+composer require dflydev/dot-access-data || err "Failed to install dflydev/dot-access-data package"
+mkdir app/Models/Traits
+cp $FILES_DIR/JsonSettingsTrait.php app/Models/Traits/ || err "Could not find JsonSettingsTrait.php"
+
 # Install js packages
 npm install
 
 echo ""
 echo "Your application is ready!"
 echo ""
-
-#todo json settings
 
 # TODO: should we do artisan publish everything?
