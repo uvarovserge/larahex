@@ -43,7 +43,7 @@ echo "Entering project directory $PROJECTNAME" && cd $PROJECTNAME
 [[ $(pwd) =~ ${PROJECTNAME} ]] || err "Failed to enter into the ./$PROJECTNAME/ directory"
 
 # Make artisan executable
-chmod +x php ./artisan || warn "Failed to set +x on ./artisan"
+chmod +x ./artisan || warn "Failed to set +x on ./artisan"
 
 # Install Twig
 composer require rcrowe/twigbridge || err "Failed to install rcrowe/twigbridge package"
