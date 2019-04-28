@@ -27,7 +27,7 @@ CODE
 [[ $# -lt 1 ]] && err "No arguments supplied"
 [[ -z "$1" ]] && echo "No project name supplied"
 LARAHEX_DIR=$(dirname "$0")
-FILES_DIR="$LARAHEX_DIR/../uvarovserge/files"
+FILES_DIR="$LARAHEX_DIR/../uvarovserge/larahex/files"
 COMMAND="$1"
 [[ "$COMMAND" = "new" ]] || err "Only 'new' command is supported at the moment. Usage: larahex new <your_project_name>"
 PROJECTNAME="$2"
