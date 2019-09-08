@@ -11,6 +11,7 @@ define('DEC_SMALLEST_FIAT_AMOUNT', decpow(10, -FIAT_PRECISION));
 
 function dec($n, $precision = PRECISION) {
     if ($n === NULL) return Decimal::create(0, $precision);
+    if (!($n instanceof Decimal)) $n .= ''; // Library bug workaround: explicitly turn the passed value into a string
     return ($n instanceof Decimal) ? $n : Decimal::create($n, $precision);
 }
 
