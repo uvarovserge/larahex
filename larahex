@@ -37,7 +37,7 @@ echo "Project Name: $PROJECTNAME"
 # Create empty laravel app
 composer global update || err "Failed to global-update composer"
 composer global require "laravel/installer" || err "Failed to install laravel/installer package"
-composer create-project laravel/laravel $PROJECTNAME "6.*" || err "Failed to create laravel/laravel project"
+composer create-project laravel/laravel $PROJECTNAME "^8.0" || err "Failed to create laravel/laravel project"
 
 echo "Entering project directory $PROJECTNAME" && cd $PROJECTNAME
 [[ $(pwd) =~ ${PROJECTNAME} ]] || err "Failed to enter into the ./$PROJECTNAME/ directory"
@@ -55,12 +55,12 @@ replacer "/('strict_variables'\s*?=>)\s*?.*?,/" "\$1 true," config/twigbridge.ph
 replacer "/('autoescape'\s*?=>)\s*?.*?,/" "\$1 true," config/twigbridge.php
 
 # Delete Vue.js/Lodash scaffolding
-php artisan preset none || err "Failed to set artisan preset none"
-php artisan preset bootstrap || err "Failed to set artisan preset bootstrap"
+#php artisan preset none || err "Failed to set artisan preset none"
+#php artisan preset bootstrap || err "Failed to set artisan preset bootstrap"
 
 # Add authentication
-composer require laravel/ui
-php artisan make:auth || php artisan ui bootstrap --auth || err "Failed to apply Laravel authentication scaffolding"
+composer require laravel/ui:^3.0 || err "Failed to require laravel/ui"
+(php artisan make:auth || php artisan ui bootstrap --auth) || err "Failed to apply Laravel authentication scaffolding"
 
 # Blade > Twig
 wget https://raw.githubusercontent.com/uvarovserge/blade2twig/master/blade2twig.php || err "Could not download blade2twig.php"
@@ -95,3 +95,4 @@ npm install
 echo ""
 echo "Your application is ready!"
 echo ""
+
